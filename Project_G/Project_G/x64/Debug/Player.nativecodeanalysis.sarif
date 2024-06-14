@@ -1,0 +1,83 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.40.33811.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/user/source/repos/project_g/project_g/player.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "a69a65f9e4260e2c4f7e45169fe5cb88b49638515466027171a32e68e2b85d38"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/source/repos/project_g/project_g/player.h"
+          },
+          "hashes": {
+            "sha-256": "c89ed1d0c8fb67e3503b73ad6e93f3c72e8d7294ff167fe3fb584fd4ba213742"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/source/repos/project_g/project_g/object.h"
+          },
+          "hashes": {
+            "sha-256": "1ba9e8cf82d650fbfc5d8b1a784585fada1c1255d38088b0a348673978fcb8fe"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/source/repos/project_g/project_g/vector2d.h"
+          },
+          "hashes": {
+            "sha-256": "6e83da61e9f6063c9ac6c299f5c110eaca0b1d2478b1e7eb430708adbb53007e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/source/repos/project_g/project_g/pch.h"
+          },
+          "hashes": {
+            "sha-256": "0657f8dc0107ec763d36cb0403b3ba73134b0afaff728f73733b6c0bb04b7665"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/source/repos/project_g/project_g/wall.h"
+          },
+          "hashes": {
+            "sha-256": "9d9bec3ebd00e92ed04b1366785487f1c3b2634f8af00e7df665aa7ba1382acb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/source/repos/project_g/project_g/missile.h"
+          },
+          "hashes": {
+            "sha-256": "c44c838e40fb4de94cf2ccc6738ec30498b575df791bdfe2afb07fdc2a67011a"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Private">
+      <UniqueIdentifier>{865e0324-84c7-42bf-8933-a2a0f2f813dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public">
+      <UniqueIdentifier>{5b012bcb-a3b6-45a2-bd34-433cb6cee485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Core">
+      <UniqueIdentifier>{ea225666-04d1-483c-af09-ddb4a5e636de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Core">
+      <UniqueIdentifier>{caf79b42-48e9-4e2a-a4a1-9845a30bd096}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Object">
+      <UniqueIdentifier>{1cc93310-6102-4e25-9c35-20356eae9652}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Object">
+      <UniqueIdentifier>{84b3d7c1-083a-445b-b2f9-37e0bac0b7cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\RankSystem">
+      <UniqueIdentifier>{f6aa5da1-0a50-4f6a-b1ac-40b8a1c05507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\RankSystem">
+      <UniqueIdentifier>{90efad08-dc73-4c44-908d-7065ef1c5449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\pch">
+      <UniqueIdentifier>{56d2aaf3-0f25-483d-b26f-b5119688f1cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Object\Player">
+      <UniqueIdentifier>{1d4038da-e106-4e61-9835-4ebe52214d54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Object\Enemy">
+      <UniqueIdentifier>{3cac09bc-2f10-4a68-8c92-89ff40962066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Object\Wall">
+      <UniqueIdentifier>{1884906c-d057-494e-8d16-242792dafa63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Object\Missile">
+      <UniqueIdentifier>{badf887f-af57-4548-b22f-ba9e89d4d45c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Object\Enemy">
+      <UniqueIdentifier>{2678379f-6b26-490f-afb9-58793025b5ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Object\Missile">
+      <UniqueIdentifier>{c9f26c32-edb6-4bab-87e2-3cb95260bd6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Object\Wall">
+      <UniqueIdentifier>{c89899ed-d58c-408b-acfc-4f65829e303d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Object\Player">
+      <UniqueIdentifier>{14cb017a-da7b-4032-98ab-2e4850fc83f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\pch">
+      <UniqueIdentifier>{0f99089a-5421-4394-b37c-916e8d60f037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\pch\UI">
+      <UniqueIdentifier>{0dc3b213-d8db-4428-aeec-da14182d91a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\pch\UI">
+      <UniqueIdentifier>{04923a0d-3599-492e-8597-de19a6a7dd0e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Core.cpp">
+      <Filter>Public\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="RankingSystem.cpp">
+      <Filter>Public\RankSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Public\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Public\Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>Public\Object\Missile</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Public\Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Public\Object\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>Public\pch</Filter>
+    </ClCompile>
+    <ClCompile Include="public.cpp">
+      <Filter>Public\pch</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Public\pch\UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Private\pch</Filter>
+    </ClInclude>
+    <ClInclude Include="public.h">
+      <Filter>Private\pch</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Private\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="RankingSystem.h">
+      <Filter>Private\RankSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Private\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Private\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
+      <Filter>Private\Object\Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Private\Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Private\Object\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Private\pch\UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.txt" />
+  </ItemGroup>
+</Project>
