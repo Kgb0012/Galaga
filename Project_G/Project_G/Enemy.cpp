@@ -92,13 +92,13 @@ void Enemy::UpdateMissile()
 	{
 		if (Enemymissiles[i]->OutofRange())
 		{
-			int end = int(Enemymissiles.size()) - 1;
+			int size = int(Enemymissiles.size()) - 1;
 
-			Missile* temp = Enemymissiles[end];
-			Enemymissiles[end] = Enemymissiles[i];
+			Missile* temp = Enemymissiles[size];
+			Enemymissiles[size] = Enemymissiles[i];
 			Enemymissiles[i] = temp;
 
-			Enemymissiles[end]->Erase();
+			Enemymissiles[size]->Erase();
 			Enemymissiles.pop_back();
 		}
 	}
