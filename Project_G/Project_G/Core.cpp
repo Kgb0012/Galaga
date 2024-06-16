@@ -21,6 +21,7 @@ Core::Core()
 	: m_bGameLoop(false)
 	, m_nFPS(100)
 	, m_nEnemySpawnCount(5)
+	, m_nEnemySpawnLimits(0)
 {
 	system("title Galaga");
 	srand(unsigned int(time(NULL)));
@@ -61,8 +62,6 @@ void Core::GameStart()
 	// Timer setting
 	clock_t tStartTime = 0, tEndTime = 0;
 
-	int nEnemySpawnLimits = 0;
-
 	// Create Default Object
 	Wall* wall = new Wall();
 	wall->Draw();
@@ -70,6 +69,7 @@ void Core::GameStart()
 	// Spawn Enemy
 	std::deque<Enemy*> enemies = GetEnemies();
 
+	// Spawn Player
 	Player* player = new Player();
 
 	// Start Timer
@@ -80,72 +80,17 @@ void Core::GameStart()
 	{
 		Sleep(GetFPS());
 
-		// 플레이어 공격 처리
-		for (int i = 0; i < enemies.size(); i++)
+		PlayerAttackLogic(enemies, player);
+		EnemyAttackLogic(enemies, player);
+
+		if (PlayerDefeatConditions(player))
 		{
-			enemies[i]->Run();
-
-			if (player->IsMissileHit(enemies[i]))
-			{
-				if (enemies[i]->CheckHP())
-				{
-					// 남은 적 미사일 삭제
-					for (const auto& EnemyMissile : enemies[i]->GetMissile())
-					{
-						if (enemies[i]->GetMissile().empty())
-						{
-							break;
-						}
-
-						EnemyMissile->Erase();
-						enemies[i]->GetMissile().pop_back();
-					}
-
-					player->AddScore(DefaultGameScore);
-
-					// 파괴된 객체 삭제를 위해 위치 변경
-					Enemy* temp = enemies[i];
-					enemies[i] = enemies[enemies.size() - 1];
-					enemies[enemies.size() - 1] = temp;
-					enemies.pop_back();
-
-					PlayEnemyDestroyBGM();
-				}
-			}
-		}
-		
-		// 적 공격 처리
-		for (const auto& enemy : enemies)
-		{
-			if (enemy->IsMissileHit(player))
-			{
-				PlayPlayerDamagedBGM();
-			}
-		}
-
-		// 플레이어 패배 조건
-		if (player->IsOutofRange() || player->IsZeroHP())
-		{
-			player->PrintCurrentInfo();
-			PlayGameOverBGM();
-			UI::GetInstance()->ShowGameOver();
 			break;
 		}
 
-		// n차 웨이브가 끝났을 때
-		if (enemies.empty())
+		if (WaveClear(enemies))
 		{
-			enemies = GetEnemies();
-			nEnemySpawnLimits++;
-
-			// 모든 웨이브가 끝났을 때
-			if (nEnemySpawnLimits >= m_nEnemySpawnCount)
-			{
-				// TODO : 여기에 승리 사운드와 UI 배치
-				PlayGameWinBGM();
-				UI::GetInstance()->ShowGameWin();
-				break;
-			}
+			break;
 		}
 		
 		// UI 최신화 때문에 밑에 배치함
@@ -237,6 +182,93 @@ void Core::SelectMode(int GameMode)
 		break;
 	}
 	}
+}
+
+void Core::PlayerAttackLogic(std::deque<Enemy*>& enemies, Player* player)
+{
+	// 플레이어 공격 처리
+	for (int i = 0; i < enemies.size(); i++)
+	{
+		enemies[i]->Run();
+
+		if (player->IsMissileHit(enemies[i]))
+		{
+			if (enemies[i]->CheckHP())
+			{
+				// 남은 적 미사일 삭제
+				for (const auto& EnemyMissile : enemies[i]->GetMissile())
+				{
+					if (enemies[i]->GetMissile().empty())
+					{
+						break;
+					}
+
+					EnemyMissile->Erase();
+					enemies[i]->GetMissile().pop_back();
+				}
+
+				player->AddScore(DefaultGameScore);
+
+				// 파괴된 객체 삭제를 위해 위치 변경
+				Enemy* temp = enemies[i];
+				enemies[i] = enemies[enemies.size() - 1];
+				enemies[enemies.size() - 1] = temp;
+				enemies.pop_back();
+
+				PlayEnemyDestroyBGM();
+			}
+		}
+	}
+}
+
+void Core::EnemyAttackLogic(std::deque<Enemy*>& enemies, Player* player)
+{
+	// 적 공격 처리
+	for (const auto& enemy : enemies)
+	{
+		if (enemy->IsMissileHit(player))
+		{
+			PlayPlayerDamagedBGM();
+		}
+	}
+}
+
+bool Core::PlayerDefeatConditions(Player* player)
+{
+	// 플레이어 패배 조건
+	if (player->IsOutofRange() || player->IsZeroHP())
+	{
+		player->PrintCurrentInfo();
+		PlayGameOverBGM();
+		UI::GetInstance()->ShowGameOver();
+
+		return true;
+	}
+
+	return false;
+}
+
+bool Core::WaveClear(std::deque<Enemy*>& enemies)
+{
+	// n차 웨이브가 끝났을 때
+	if (enemies.empty())
+	{
+		enemies = GetEnemies();
+		m_nEnemySpawnLimits++;
+
+		// 모든 웨이브가 끝났을 때
+		if (m_nEnemySpawnLimits >= m_nEnemySpawnCount)
+		{
+			// TODO : 여기에 승리 사운드와 UI 배치
+			PlayGameWinBGM();
+			UI::GetInstance()->ShowGameWin();
+			return true;
+		}
+
+		return false;
+	}
+
+	return false;
 }
 
 void Core::PlayLogoBGM() const

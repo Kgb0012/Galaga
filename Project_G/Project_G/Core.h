@@ -10,6 +10,7 @@ class Core
 private:
 	int m_nFPS;
 	int m_nEnemySpawnCount;
+	int m_nEnemySpawnLimits;
 	
 	bool m_bGameLoop;
 
@@ -30,6 +31,11 @@ private:
 
 	void CleanScreen() const;
 	void SelectMode(int GameMode);
+
+	void PlayerAttackLogic(std::deque<Enemy*>& enemies, Player* player);
+	void EnemyAttackLogic(std::deque<Enemy*>& enemies, Player* player);
+	bool PlayerDefeatConditions(Player* player);
+	bool WaveClear(std::deque<Enemy*>& enemies);
 
 	void PlayLogoBGM() const;
 	void PlaySelectModeBGM() const;
